@@ -1,0 +1,11 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+	<appender name="default" class="LoggerAppenderMail">
+		<layout class="LoggerLayoutSimple" />
+		<param name="to" value="hogehoge@hoge" />
+		<param name="from" value="hogehoge@hoge" />
+	</appender>
+	<root>
+		<appender_ref ref="default" />
+	</root>
+</configuration>
+
