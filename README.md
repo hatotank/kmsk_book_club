@@ -126,11 +126,13 @@ twitter_api_key.phpとconfig.xmlの中身は必ず書き換えてください。
 |chapter_id|integer|チャプターID|
 
 **eg_force**
+
 |列名|型|内容|
 |:---|:---|:---|
 |capter_id|integer|強制実行チャプターID|
 
 **eg_history**
+
 |列名|型|内容|
 |:---|:---|:---|
 |book_count|integer|開催回数|
