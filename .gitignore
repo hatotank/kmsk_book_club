@@ -1,0 +1,11 @@
+db/*.db
+img/banner/*
+!img/banner/.gitkeep
+img/capter-photo/*
+!img/capter-photo/.gitkeep
+log4php/*
+!log4php/.gitkeep
+twitteroauth/*
+!twitteroauth/.gitkeep
+mailoutput/*
+debug/*
