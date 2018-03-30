@@ -1,0 +1,19 @@
+【tw_yokoku】【予告】第【count】回読書会のお知らせ
+
+今回の作品：
+【capter_title】
+
+日時：
+【yokoku_start】～【yokoku_end】の【yokoku_days】
+
+作家：
+【writer_name】
+
+話数：
+全【storis】話
+
+ルール：
+『 #君咲読書会 』のハッシュタグを付けて感想をつぶやいたり、読みながら実況するだけ！
+
+#あんガル #君咲読書会
+【capter_photo】
