@@ -346,6 +346,7 @@ if($kmsk_book_club){
               $tag_list .= "、";
             }
             $tag_list .= $v['tag_name'];
+            $idx++;
           }
           if(strlen($tag_list) > 0){
             $tpl_replace[] = $tag_list;
