@@ -11,8 +11,8 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set("Asia/Tokyo");
 
 // インクルード
-require_once("twitter_api_key.php");
-require_once("autoload.php");
+require_once(dirname(__FILE__)."/twitter_api_key.php");
+require_once(dirname(__FILE__)."/autoload.php");
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 /**
@@ -371,8 +371,8 @@ $db = null;
 
 // TwitterとLog4php処理
 if($twitter){
-  require_once("log4php/Logger.php");
-  Logger::configure('config.xml');
+  require_once(dirname(__FILE__)."/log4php/Logger.php");
+  Logger::configure(dirname(__FILE__).'/config.xml');
   $log4 = Logger::getLogger('myLogger');
 
   $tw_string = $tpl_content;
