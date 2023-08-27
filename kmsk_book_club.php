@@ -11,8 +11,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 date_default_timezone_set("Asia/Tokyo");
 
 // インクルード
+require_once("ca-bundle/src/CaBundle.php");
 require_once(dirname(__FILE__)."/twitter_api_key.php");
-require_once(dirname(__FILE__)."/autoload.php");
+require_once(dirname(__FILE__)."/twitteroauth/autoload.php");
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 /**
@@ -382,7 +383,7 @@ if($twitter){
 
   $tw_string = $tpl_content;
   $tw_media = array();
-  $tw_media_ids = "";
+  $tw_media_ids = array();
 
   // メディア添付
   foreach($tpl_media as $v){
@@ -391,27 +392,37 @@ if($twitter){
   // メディアパラメータ作成
   $idx = 0;
   foreach($tw_media as $v){
-    if($idx > 0){
-      $tw_media_ids = $tw_media_ids . ',' . $v->media_id_string;
-    }else{
-      $tw_media_ids = $v->media_id_string;
-    }
-    $idx++;
-  }    
+    $tw_media_ids[] = $v->media_id_string;
+  }
 
   // パラメータに投稿内容とメディア指定
-  $parameters = ['status'=>$tw_string,'media_ids'=>$tw_media_ids,];
+  if(empty($tpl_media)){
+    $parameters = ['text' => $tw_string];
+  } else {
+    $parameters = [
+      'text'=>$tw_string,
+      'media' => [
+        'media_ids' => $tw_media_ids,
+      ]
+    ];  
+  }
+
+  // API v2指定
+  $tw->setApiVersion("2");
+
   // Twitter投稿
-  $statues = $tw->post('statuses/update',$parameters);
+  $statues = $tw->post('tweets',$parameters,true);
   // エラーチェック
-  if($tw->getLastHttpCode() == 200){
+  if($tw->getLastHttpCode() == 201){
     // Tweet posted succesfully
-    $log4->debug($tw_string);
+    print("Tweet posted succesfully");
     $log4->debug("Tweet posted succesfully");
-  }else{
-    // Handle error case
     $log4->debug($tw_string);
+  }else{
+    print("Handle error case");
+    // Handle error case
     $log4->debug("Handle error case");
+    $log4->debug($tw_string);
   }
 }
 ?>
